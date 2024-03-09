@@ -15,15 +15,12 @@ from sumy.summarizers.lsa import LsaSummarizer
 from authlib.integrations.flask_client import OAuth
 import os
 
-# Function to connect to PostgreSQL database
-DATABASE_URL=os.getenv('DATABASE_URL')
-conn = psycopg2.connect(
-    host="localhost",
-    database="dhp2024",
-    user='postgres',
-    password='Nikhil@930',
-    port="5432"
-)
+#Function to connect to PostgreSQL database
+DATABASE_URL = "postgres://database_url_f9ed_user:5Hee9QKXB0L5tJX2VRrPyl8AHdfDLL5k@dpg-cnmanvmv3ddc73fivf50-a.oregon-postgres.render.com/database_url_f9ed"
+DATABASE_URL = os.getenv("DATABASE_URL")
+
+conn = psycopg2.connect(DATABASE_URL)
+
 
 # Define a cursor to execute PostgreSQL commands. 
 cursor = conn.cursor()
