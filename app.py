@@ -16,6 +16,7 @@ from authlib.integrations.flask_client import OAuth
 nltk.download('averaged_perceptron_tagger')
 nltk.download("stopwords")
 nltk.download("punkt")
+nltk.download('universal_tagset')
 
 # Function to connect to PostgreSQL database
 database_url = "dpg-cnmanvmv3ddc73fivf50-a.oregon-postgres.render.com"
