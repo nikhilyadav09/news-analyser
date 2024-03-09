@@ -210,8 +210,8 @@ def github_authorize():
     user_info = resp.json()
     github_username = user_info['login']
     
-    # Check if the logged-in user is you
-    if github_username == "nikhilyadav09":
+    # Check if the logged-in user is one of the admins
+    if github_username in ["nikhilyadav09", "atmabodha"]:  
         cursor.execute("SELECT * FROM news_data")
         data = cursor.fetchall()
         return render_template('history.html', data=data)

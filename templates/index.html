@@ -32,7 +32,8 @@
             padding: 10px;
             background-color: rgba(255, 255, 255, 0.8);
             border-radius: 8px;
-            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            box-shadow: 0 0 50px rgba(10, 10, 10, 0.9);
+        
         }
 
         /* Header styles */
@@ -76,6 +77,7 @@
             border: 1px solid #ccc;
             border-radius: 4px;
             color: #333;
+            font-size: large;
         }
 
         /* Button styles */
@@ -87,6 +89,7 @@
             background-color: #007bff;
             color: #fff;
             cursor: pointer;
+            font-size:medium;
         }
 
         /* Button hover styles */
@@ -131,14 +134,19 @@
         }
 
         /* Anchor tag styles */
-        a {
-            font-size: 16px;
+      /* Button styles */
+        .love a {
             display: inline-block;
             padding: 10px 20px;
             background-color: #ff0008;
             color: #fff; 
             text-decoration: none;
             border-radius: 5px;
+        }
+
+        /* Button hover styles */
+        .love a:hover {
+            background-color: #050505;
         }
 
         /* Contact us section styles */
@@ -159,9 +167,9 @@
     <!-- Main container -->
     <div class="container">
         <!-- Header -->
-        <h1>News Analyzer</h1>
+        <h1>News Analyzer</h1><br>
         <!-- Introduction text -->
-        <p>"Welcome to News Analyzer, your go-to tool for dissecting and understanding news articles. Simply input the URL above and uncover the story behind the headlines."</p><br><br>
+        <p style="font-size: medium;">"Welcome to News Analyzer, your go-to tool for dissecting and understanding news articles. Simply input the URL below and uncover the story behind the headlines."</p><br><br>
         <!-- Notice section -->
         <h6 style="font-size: 18px;"><span style="background-color: yellow;">Notice:</span> This website is specific for The Indian Express news articles</h6><br>
 
@@ -178,9 +186,9 @@
 
         <!-- GitHub authentication button -->
         <br>
+        <div class="love">
         <a href="{{ url_for('github_login') }}" >Admin Github Authentication</a>
-
-
+        </div>
         <!-- Analysis result display -->
         <br><br>
         {% if title %}
@@ -197,11 +205,13 @@
         </div><br><br>
         {% endif %}
         
-        <!-- Contact us section -->
-        <div class="contact-us">
-            <P>copyright@news analyser</P>
-            <p>Contact Us<br><b>Mob no.</b>-:+91 9301800429<br><b>Email</b>-:nikhilyadav1921@gmail.com</p>
-        </div>
+      
+    <!-- Contact us section -->
+    <div class="contact-us">
+        <P>Copyright@News Analyser</P>
+        <p>Contact Us<br><b>Mob no.</b>-: <a href="tel:+919301800429">+91 9301800429</a><br><b>Email</b>-: <a href="mailto:nikhilyadav1921@gmail.com">nikhilyadav1921@gmail.com</a></p>
+    </div>
+
     </div>
 </body>
 </html>
