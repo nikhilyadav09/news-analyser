@@ -76,6 +76,7 @@ github = oauth.register(
 
 # Define English stopwords
 nltk.download("stopwords")
+nltk.download("punkt")
 stopwords = nltk.corpus.stopwords.words('english')
 
 # Function to clean text extracted from a URL
