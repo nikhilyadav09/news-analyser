@@ -16,7 +16,7 @@ from authlib.integrations.flask_client import OAuth
 
 # Function to connect to PostgreSQL database
 conn = psycopg2.connect(
-    host="news-analyser.onrender.com",
+    host="0.0.0.0",
     database="dhp2024",
     user='postgres',
     password='Nikhil@930',
