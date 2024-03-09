@@ -8,3 +8,4 @@ regex==2023.12.25
 requests==2.31.0
 summarizer==0.0.7
 sumy==0.11.0
+gunicorn==21.2.0
