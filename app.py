@@ -13,6 +13,7 @@ from sumy.parsers.plaintext import PlaintextParser
 from sumy.nlp.tokenizers import Tokenizer
 from sumy.summarizers.lsa import LsaSummarizer
 from authlib.integrations.flask_client import OAuth
+import numpy
 nltk.download('averaged_perceptron_tagger')
 nltk.download("stopwords")
 nltk.download("punkt")
