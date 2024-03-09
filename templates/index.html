@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Meta tags for character set and viewport -->
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Title of the page -->
+    <title>News Analyzer</title>
+    
+    <!-- Internal CSS styles -->
+    <style>
+        /* Reset styles */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* Body styles */
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f5f5f5;
+            background-image: url('https://img.freepik.com/free-photo/detail-shot-patterned-wall_1359-1061.jpg?t=st=1709898395~exp=1709901995~hmac=01c048457dfccd403a77e1e30fd3b4714e08e63945f21afa47ef2787c2240089&w=360');
+            background-size: cover;
+            background-position: center;
+        }
+
+        /* Container styles */
+        .container {
+            max-width: 1000px;
+            margin: 50px auto;
+            padding: 10px;
+            background-color: rgba(255, 255, 255, 0.8);
+            border-radius: 8px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Header styles */
+        h1 {
+            font-family: 'Pacifico', cursive; 
+            font-size: 3em; 
+            color: transparent; 
+            text-align: center;
+            background: linear-gradient(to right, #ffcc00, #ff3300); 
+            -webkit-background-clip: text; 
+            background-clip: text;
+        }
+
+        /* Notice section styles */
+        .notice {
+            margin-top: 20px;
+            font-size: 18px;
+            text-align: center;
+            padding: 10px;
+            background-color: #ffd700;
+            border-radius: 4px;
+        }
+
+        /* Notice span styles */
+        .notice span {
+            background-color: #ff3366;
+            color: #fff;
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+
+        /* Form group styles */
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        /* Input field styles */
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            color: #333;
+        }
+
+        /* Button styles */
+        button {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            background-color: #007bff;
+            color: #fff;
+            cursor: pointer;
+        }
+
+        /* Button hover styles */
+        button:hover {
+            background-color: #0056b3;
+        }
+
+        /* Analysis result section styles */
+        .analysis-result {
+            margin-top: 20px;
+            padding: 20px;
+            border-radius: 10px;
+            background-color: rgba(255, 255, 255, 0.9);
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            text-align: left; /* Align text to the left */
+        }
+
+        /* Analysis result paragraph styles */
+        .analysis-result p {
+            margin-bottom: 15px;
+        }
+
+        /* Google authentication button styles */
+        .google-auth-btn {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        /* View details button styles */
+        #viewDetailsBtn {
+            background-color: #28a745;
+            color: #fff;
+            padding: 10px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        /* View details button hover styles */
+        #viewDetailsBtn:hover {
+            background-color: #218838;
+        }
+
+        /* Anchor tag styles */
+        a {
+            font-size: 16px;
+            display: inline-block;
+            padding: 10px 20px;
+            background-color: #ff0008;
+            color: #fff; 
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        /* Contact us section styles */
+        .contact-us {
+            font-size: 16;
+            color: #333;
+            text-align: center;
+            font-weight: bolder;
+        }
+
+        /* H6 styles */
+        h6 {
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Main container -->
+    <div class="container">
+        <!-- Header -->
+        <h1>News Analyzer</h1>
+        <!-- Introduction text -->
+        <p>"Welcome to News Analyzer, your go-to tool for dissecting and understanding news articles. Simply input the URL above and uncover the story behind the headlines."</p><br><br>
+        <!-- Notice section -->
+        <h6 style="font-size: 18px;"><span style="background-color: yellow;">Notice:</span> This website is specific for The Indian Express news articles</h6><br>
+
+        <!-- Form for inputting URL -->
+        <form action="/submit" method="post">
+            <div class="form-group">   
+                <input type="text" id="url" name="url" placeholder="Enter News Article URL:">
+            </div>
+            <button type="submit" name="submit" value="abc" class="btn-primary">Submit</button>
+        </form>    
+
+        <!-- Error message display -->
+        <br> <b style="color: red;">{{errors}}</b><br> 
+
+        <!-- GitHub authentication button -->
+        <br>
+        <a href="{{ url_for('github_login') }}" >Admin Github Authentication</a>
+
+
+        <!-- Analysis result display -->
+        <br><br>
+        {% if title %}
+        <div>
+            <p><b>Title of News : </b> {{ title }}</p>
+            <p><b>Type of News : </b> {{ newstype }}</p> 
+            <p><b>No. of sentences : </b> {{ num_sentences }}</p>
+            <p><b>No. of words : </b> {{ num_words }}</p>
+            <p><b>No. of POS tags : </b> {{ pos_tags }}</p>
+            <p><b>Stop words : </b> {{ count_stop }}</p>           
+            <p><b>Summary of News : </b><br> {{ summary }}</p>
+            <p><b>Reading time per minute : </b> {{ reading_time_minutes }}</p>
+            <p><b>News content : </b> <br>{{ cleaned_text }}</p>
+        </div><br><br>
+        {% endif %}
+        
+        <!-- Contact us section -->
+        <div class="contact-us">
+            <P>copyright@news analyser</P>
+            <p>Contact Us<br><b>Mob no.</b>-:+91 9301800429<br><b>Email</b>-:nikhilyadav1921@gmail.com</p>
+        </div>
+    </div>
+</body>
+</html>
