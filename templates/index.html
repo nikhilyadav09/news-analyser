@@ -171,18 +171,20 @@
         <!-- Introduction text -->
         <p style="font-size: medium;">"Welcome to News Analyzer, your go-to tool for dissecting and understanding news articles. Simply input the URL below and uncover the story behind the headlines."</p><br><br>
         <!-- Notice section -->
-        <h6 style="font-size: 18px;"><span style="background-color: yellow;">Notice:</span> This website is specific for The Indian Express news articles</h6><br>
-
+        <h6 style="font-size: 18px;"><span style="background-color: yellow;">Notice:</span> This website is specific for The Indian Express news articles.</h6><br>
+         <!-- Link to Indian Express -->
         <!-- Form for inputting URL -->
         <form action="/submit" method="post">
             <div class="form-group">   
                 <input type="text" id="url" name="url" placeholder="Enter News Article URL:">
             </div>
             <button type="submit" name="submit" value="abc" class="btn-primary">Submit</button>
-        </form>    
-
+        </form> 
+ 
         <!-- Error message display -->
         <br> <b style="color: red;">{{errors}}</b><br> 
+        <p style="font-size: 18px;  font-family: system-ui, -apple-system;"><b>You can refer <a href="https://indianexpress.com/"target="_blank">Indian Express</a> for articles.</b></p><br>
+
 
         <!-- GitHub authentication button -->
         <br>
@@ -193,15 +195,15 @@
         <br><br>
         {% if title %}
         <div>
-            <p><b>Title of News : </b> {{ title }}</p>
-            <p><b>Type of News : </b> {{ newstype }}</p> 
-            <p><b>No. of sentences : </b> {{ num_sentences }}</p>
-            <p><b>No. of words : </b> {{ num_words }}</p>
-            <p><b>No. of POS tags : </b> {{ pos_tags }}</p>
-            <p><b>Stop words : </b> {{ count_stop }}</p>           
-            <p><b>Summary of News : </b><br> {{ summary }}</p>
-            <p><b>Reading time per minute : </b> {{ reading_time_minutes }}</p>
-            <p><b>News content : </b> <br>{{ cleaned_text }}</p>
+            <p><b>Title of News : </b> {{ title }}</p><br>
+            <p><b>Type of News : </b> {{ newstype }}</p><br> 
+            <p><b>No. of sentences : </b> {{ num_sentences }}</p><br>
+            <p><b>No. of words : </b> {{ num_words }}</p><br>
+            <p><b>No. of POS tags : </b> {{ pos_tags }}</p><br>
+            <p><b>Stop words : </b> {{ count_stop }}</p> <br>          
+            <p><b>Summary of News : </b><br> {{ summary }}</p><br>
+            <p><b>Reading time per minute : </b> {{ reading_time_minutes }}</p><br>
+            <p><b>News content : </b> <br>{{ cleaned_text }}</p><br>
         </div><br><br>
         {% endif %}
         
