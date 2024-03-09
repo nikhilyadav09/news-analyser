@@ -13,6 +13,9 @@ from sumy.parsers.plaintext import PlaintextParser
 from sumy.nlp.tokenizers import Tokenizer
 from sumy.summarizers.lsa import LsaSummarizer
 from authlib.integrations.flask_client import OAuth
+nltk.download('averaged_perceptron_tagger')
+nltk.download("stopwords")
+nltk.download("punkt")
 
 # Function to connect to PostgreSQL database
 database_url = "dpg-cnmanvmv3ddc73fivf50-a.oregon-postgres.render.com"
