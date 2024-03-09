@@ -22,7 +22,7 @@ conn = psycopg2.connect(
     password='Nikhil@930'
 )
 
-# Define a cursor to execute PostgreSQL commands
+# Define a cursor to execute PostgreSQL commands. 
 cursor = conn.cursor()
 
 # Create a table to store news data if it does not exist already
