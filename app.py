@@ -13,8 +13,10 @@ from sumy.parsers.plaintext import PlaintextParser
 from sumy.nlp.tokenizers import Tokenizer
 from sumy.summarizers.lsa import LsaSummarizer
 from authlib.integrations.flask_client import OAuth
+import os
 
 # Function to connect to PostgreSQL database
+DATABASE_URL=os.getenv('DATABASE_URL')
 conn = psycopg2.connect(
     host="localhost",
     database="dhp2024",
