@@ -13,13 +13,21 @@ from sumy.parsers.plaintext import PlaintextParser
 from sumy.nlp.tokenizers import Tokenizer
 from sumy.summarizers.lsa import LsaSummarizer
 from authlib.integrations.flask_client import OAuth
-import os
 
-#Function to connect to PostgreSQL database
-DATABASE_URL = "postgres://database_url_f9ed_user:5Hee9QKXB0L5tJX2VRrPyl8AHdfDLL5k@dpg-cnmanvmv3ddc73fivf50-a.oregon-postgres.render.com/database_url_f9ed"
-DATABASE_URL = os.getenv("DATABASE_URL")
+database_url = "dpg-cnmanvmv3ddc73fivf50-a.oregon-postgres.render.com"
+database_name = "database_url_f9ed"
+user = "database_url_f9ed_user"
+password = "5Hee9QKXB0L5tJX2VRrPyl8AHdfDLL5k"
+host = f"{database_url}"
+port = "5432"  # Replace with your actual port if different
 
-conn = psycopg2.connect(DATABASE_URL)
+# Create a connection to the database
+conn = psycopg2.connect(
+    database=database_name,
+    user=user,
+    password=password,
+    host=host,
+    port=port)
 
 
 # Define a cursor to execute PostgreSQL commands. 
