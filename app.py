@@ -14,23 +14,22 @@ from sumy.nlp.tokenizers import Tokenizer
 from sumy.summarizers.lsa import LsaSummarizer
 from authlib.integrations.flask_client import OAuth
 
+# Function to connect to PostgreSQL database
 database_url = "dpg-cnmanvmv3ddc73fivf50-a.oregon-postgres.render.com"
 database_name = "database_url_f9ed"
 user = "database_url_f9ed_user"
 password = "5Hee9QKXB0L5tJX2VRrPyl8AHdfDLL5k"
 host = f"{database_url}"
 port = "5432"  # Replace with your actual port if different
-
-# Create a connection to the database
 conn = psycopg2.connect(
     database=database_name,
     user=user,
     password=password,
     host=host,
-    port=port)
+    port=port
+    )
 
-
-# Define a cursor to execute PostgreSQL commands. 
+# Define a cursor to execute PostgreSQL commands
 cursor = conn.cursor()
 
 # Create a table to store news data if it does not exist already
@@ -76,6 +75,7 @@ github = oauth.register(
 )
 
 # Define English stopwords
+nltk.download("stopwords")
 stopwords = nltk.corpus.stopwords.words('english')
 
 # Function to clean text extracted from a URL
@@ -157,8 +157,8 @@ def index():
 # Route for submitting URL
 @app.route('/submit', methods=['GET', 'POST'])
 def submit():
-    if request.form['submit'] == 'abc':
-        url = request.form['url']
+    if request.form.get('submit') == 'abc':
+        url = request.form.get('url')
         try:
             if 'https://indianexpress.com/article/' not in url:
                 errors = 'PLEASE put the URL of Indian express Articles'
@@ -168,9 +168,13 @@ def submit():
             store_data(url, title, newstype, num_sentences, num_words, count_stop, pos_tags, reading_time_minutes, summary)
             return render_template('index.html', summary=summary, cleaned_text=cleaned_text, num_sentences=num_sentences, num_words=num_words, pos_tags=pos_tags, title=title, count_stop=count_stop, newstype=newstype, reading_time_minutes=reading_time_minutes)
         
+        # except Exception as e:
+        #     errors = 'please input the correct URL'
+        #     return render_template('index.html', errors=errors)
         except Exception as e:
-            errors = 'please input the correct URL'
+            errors = 'An error occurred: {}'.format(str(e))
             return render_template('index.html', errors=errors)
+
     
     return render_template('index.html')
 
@@ -187,7 +191,7 @@ def github_login():
     github = oauth.create_client('github')
     redirect_uri = url_for('github_authorize', _external=True)
     return github.authorize_redirect(redirect_uri)
-    
+
 # Route for GitHub authorization
 @app.route('/login/github/authorize')
 def github_authorize():
@@ -208,8 +212,6 @@ def github_authorize():
     else:
         # Redirect the user to the home page
         return redirect(url_for('index'))
-
-
 
 # Route for GitHub logout
 @app.route('/logout/github')
