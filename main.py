@@ -19,7 +19,8 @@ conn = psycopg2.connect(
     host="localhost",
     database="dhp2024",
     user='postgres',
-    password='Nikhil@930'
+    password='Nikhil@930',
+     port="5432"
 )
 
 # Define a cursor to execute PostgreSQL commands. 
