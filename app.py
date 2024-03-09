@@ -16,11 +16,11 @@ from authlib.integrations.flask_client import OAuth
 
 # Function to connect to PostgreSQL database
 conn = psycopg2.connect(
-    host="0.0.0.0",
+    host="localhost",
     database="dhp2024",
     user='postgres',
     password='Nikhil@930',
-     port="5432"
+    port="5432"
 )
 
 # Define a cursor to execute PostgreSQL commands. 
@@ -180,18 +180,29 @@ def github_login():
     github = oauth.create_client('github')
     redirect_uri = url_for('github_authorize', _external=True)
     return github.authorize_redirect(redirect_uri)
-
+    
 # Route for GitHub authorization
 @app.route('/login/github/authorize')
 def github_authorize():
     github = oauth.create_client('github')
     token = github.authorize_access_token()
     session['github_token'] = token
-    resp = github.get('user').json()
-    print(f"\n{resp}\n")
-    cursor.execute("SELECT * FROM news_data")
-    data = cursor.fetchall()
-    return render_template('history.html', data=data)
+    
+    # Retrieve user info from GitHub
+    resp = github.get('user')
+    user_info = resp.json()
+    github_username = user_info['login']
+    
+    # Check if the logged-in user is you
+    if github_username == "nikhilyadav09":
+        cursor.execute("SELECT * FROM news_data")
+        data = cursor.fetchall()
+        return render_template('history.html', data=data)
+    else:
+        # Redirect the user to the home page
+        return redirect(url_for('index'))
+
+
 
 # Route for GitHub logout
 @app.route('/logout/github')
